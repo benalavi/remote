@@ -8,7 +8,7 @@ namespace :remote do
       recipes = layout["roles"][role]
       raise Remote::Task::Error.new("Undefined role #{role}") if !layout["roles"].has_key?(role)
       
-      remote.env = { "DEPLOY_ENV" => environment }
+      remote.env = { "REMOTE_ENV" => environment }
       remote.run servers, recipes.collect{ |script| File.join(Remote::Task::Root, "recipes", "#{script}.sh") }
     end
   end
